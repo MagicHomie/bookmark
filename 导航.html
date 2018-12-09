@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简单导航</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header></header>
+    <main>
+        <div class="wrapper" id="mainx"></div>
+    </main>
+    <footer></footer>
+    <script>
+        keys = {
+            0:['q','w','e','r','t','y','u','i','o','p'],
+            1:['a','s','d','f','g','h','j','k','l'],
+            2:['z','x','c','v','b','n','m'],
+            length: 3
+        }
+        hash = {
+            q:'www.qq.com',
+            w:'www.weibo.com',
+            e:'www.ele.me',
+            r:undefined,
+            t:undefined,
+            y:'www.youtube.com',
+            u:'www.uc.com',
+            i:'www.iqiyi.com',
+            o:'www.opgg.com',
+            p:'www.pixiv.net',
+            a:'www.acfun.tv',
+            g:'www.github.com',
+            h:'www.hacg.wiki',
+            z:'www.zhihu.com',
+            x:'www.xiedaimala.com',
+            b:'www.bilibili.com'
+        }
+        hashInLocalStorage = JSON.parse(localStorage.getItem('local') || 'null')
+        if(hashInLocalStorage){
+            hash = hashInLocalStorage
+        }
+        index = 0
+        while(index < keys['length']){
+            div = document.createElement('div')
+            mainx.appendChild(div)
+            row = keys[index]
+            index2 = 0
+            while(index2< row['length']){
+                kbd = document.createElement('kbd')
+                kbd.textContent = row[index2]
+                buttonx = document.createElement('button')
+                buttonx.textContent = 'Edit'
+                buttonx.onclick = function(xzkjcnxlkcjlk){
+                    console.log(xzkjcnxlkcjlk['target']['id'])
+                    x = prompt('输入你的网址')
+                    hash[key] = x
+                    localStorage.setItem('local', JSON.stringify(hash))
+                }
+                kbd.appendChild(buttonx)
+                div.appendChild(kbd)
+                index2 = index2 + 1
+            }
+            index = index + 1
+        }
+        document.onkeypress = function(xzkjcnxlkcjlk){
+            key = xzkjcnxlkcjlk['key']
+            website = hash[key]
+            window.open('http://'+website, '_blank')
+        }
+    </script>
+</body>
+</html>
