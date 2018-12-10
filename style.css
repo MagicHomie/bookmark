@@ -1,6 +1,6 @@
 *{margin: 0; padding: 0;}
 a{text-decoration: none;}
-kbd{border: 1px solid black;width: 4em; height: 4em; display: inline-block;
+kbd{border: 1px solid black;width: 4px; height: 4px; display: inline-block;
 text-transform: uppercase;
 position: relative;
 }
@@ -13,15 +13,58 @@ kbd > button{
 kbd:hover > button{
     display: inline-block;
 }
+body{
+    height: 100vh;
+    background:  white url(./img/wall3-713409.jpg) no-repeat center center;
+    background-size: cover;
+}
+.wrapper{
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+}
 main{
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 #mainx{
     display: inline-block;
 }
 #mainx > div:nth-child(2){
-    margin-left: 1.5em;
+    margin-left: 1.5px;
 }
 #mainx > div:nth-child(3){
-    margin-left: 1em;
+    margin-left: 0px;
+}
+.key{
+    width: 64px;
+    height: 60px;
+    background: linear-gradient(to bottom, #292929 0%,#111111 100%); 
+    border: 1px solid #373737;
+    color: white;
+    border-radius:5px;
+    box-shadow: 0 0 0 1px #1A1B1C, 0 0 0 2px #1F2020,0 2px 0 2px #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    position: relative;
+}
+.key img{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: 4px;
+    bottom: 3px;
+}
+.row{
+    margin: 18px;
+}
+.row .key{
+    margin: 0 8px;
+}
+.key .text{
+    position: absolute;
+    left: 5px;
+    top: 2px;
 }

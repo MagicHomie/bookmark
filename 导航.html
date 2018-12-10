@@ -14,62 +14,126 @@
     </main>
     <footer></footer>
     <script>
-        keys = {
+        // 1.初始化
+        var hashA = init()
+        var keys = hashA['keys']
+        var hash = hashA['hash']
+                
+        // 2.生成键盘
+        createKeyboard(keys,hash)
+
+        // 3.监听用户
+        listenToKeyboard(hash)
+
+        //下面是工具函数
+
+        function getFromLocalStorage(name){
+            return JSON.parse(localStorage.getItem(name) || 'null')
+        }
+        function create(tagName){
+            return document.createElement(tagName)
+        }
+        function createSpan(textContent){
+            var span = create('span')
+            span.textContent = textContent  
+            span.className = 'text'
+            return span
+        }
+        function createButton(id){
+            var button = create('button')
+            button.textContent = 'Edit'
+            button.id = id
+            button.onclick = function(xzkjcnxlkcjlk){
+                var button2 = xzkjcnxlkcjlk['target']
+                var img2 = button2.previousSibling
+                var key = button2['id']
+                var x = prompt('输入你的网址')
+                hash[key] = x
+                img2.src = 'http://' + x + '/favicon.ico'
+                img2.onerror = function(xxx){
+                xxx.target.src = './img/icon.png'
+            }
+                localStorage.setItem('local', JSON.stringify(hash))
+            }
+            return button
+        }
+        function createImage(domain){
+            var img = create('img')
+            if(domain){
+            img.src = 'http://' + domain + '/favicon.ico'
+            }else{
+            img.src = './img/icon.png'
+            }
+            img.onerror = function(xxx){
+                xxx.target.src = './img/icon.png'
+            }
+            return img
+        }
+        function init(){
+            var keys = {
             0:['q','w','e','r','t','y','u','i','o','p'],
             1:['a','s','d','f','g','h','j','k','l'],
             2:['z','x','c','v','b','n','m'],
             length: 3
         }
-        hash = {
+        var hash = {
             q:'www.qq.com',
             w:'www.weibo.com',
             e:'www.ele.me',
             r:undefined,
             t:undefined,
             y:'www.youtube.com',
-            u:'www.uc.com',
+            u:'uu.163.com',
             i:'www.iqiyi.com',
-            o:'www.opgg.com',
-            p:'www.pixiv.net',
-            a:'www.acfun.tv',
+            o:'www.op.gg',
+            p:undefined,
+            a:'www.acfun.cn',
             g:'www.github.com',
             h:'www.hacg.wiki',
             z:'www.zhihu.com',
-            x:'www.xiedaimala.com',
+            x:undefined,
             b:'www.bilibili.com'
         }
-        hashInLocalStorage = JSON.parse(localStorage.getItem('local') || 'null')
+        var hashInLocalStorage = getFromLocalStorage('local')
         if(hashInLocalStorage){
             hash = hashInLocalStorage
         }
-        index = 0
-        while(index < keys['length']){
-            div = document.createElement('div')
-            mainx.appendChild(div)
-            row = keys[index]
-            index2 = 0
-            while(index2< row['length']){
-                kbd = document.createElement('kbd')
-                kbd.textContent = row[index2]
-                buttonx = document.createElement('button')
-                buttonx.textContent = 'Edit'
-                buttonx.onclick = function(xzkjcnxlkcjlk){
-                    console.log(xzkjcnxlkcjlk['target']['id'])
-                    x = prompt('输入你的网址')
-                    hash[key] = x
-                    localStorage.setItem('local', JSON.stringify(hash))
-                }
-                kbd.appendChild(buttonx)
-                div.appendChild(kbd)
-                index2 = index2 + 1
-            }
-            index = index + 1
+        return {
+            "keys":keys,
+            "hash":hash
         }
-        document.onkeypress = function(xzkjcnxlkcjlk){
-            key = xzkjcnxlkcjlk['key']
-            website = hash[key]
+    }
+        function createKeyboard(keys,hash){
+            for(var index = 0;index < keys['length'];index = index + 1){
+            var div = create('div')
+            div.className = 'row'
+
+            mainx.appendChild(div)
+
+            var row = keys[index]
+            for(var index2 = 0;index2< row['length'];index2 = index2 + 1){
+                var span = createSpan(row[index2])
+                
+                var button = createButton(row[index2])
+                
+                var img = createImage(hash[row[index2]])
+                
+                var kbd = create('kbd')
+                kbd.className = 'key'
+                kbd.appendChild(span)              
+                kbd.appendChild(img)
+                kbd.appendChild(button)
+                div.appendChild(kbd)
+            }
+        }
+        }
+        function listenToKeyboard(hash){
+            document.onkeypress = function(xzkjcnxlkcjlk){
+            var key = xzkjcnxlkcjlk['key']
+            var website = hash[key]
             window.open('http://'+website, '_blank')
         }
+    }
     </script>
 </body>
 </html>
