@@ -49,7 +49,7 @@
                 var key = button2['id']
                 var x = prompt('输入你的网址')
                 hash[key] = x
-                img2.src = 'https://' + x + '/favicon.ico'
+                img2.src = 'http://' + x + '/favicon.ico'
                 img2.onerror = function(xxx){
                 xxx.target.src = './img/icon.png'
             }
@@ -60,7 +60,7 @@
         function createImage(domain){
             var img = create('img')
             if(domain){
-            img.src = 'https://' + domain + '/favicon.ico'
+            img.src = 'http://' + domain + '/favicon.ico'
             }else{
             img.src = './img/icon.png'
             }
@@ -132,7 +132,7 @@
             document.onkeypress = function(xzkjcnxlkcjlk){
             var key = xzkjcnxlkcjlk['key']
             var website = hash[key]
-            window.open('https://'+website, '_blank')
+            window.open('http://'+website, '_blank')
         }
     }
     </script>
