@@ -15,7 +15,7 @@ kbd:hover > button{
 }
 body{
     height: 100vh;
-    background:  white url(./img/wall3-713409.jpg) no-repeat center center;
+    background:  white url(/img/wall3-713409.jpg) no-repeat center center;
     background-size: cover;
 }
 .wrapper{
